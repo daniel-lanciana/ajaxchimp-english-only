@@ -152,8 +152,8 @@ Code from `demo.html`:
 			    	console.log('MailChimp response received', response);
 
 		    		// Hide both messages in case we resubmit..
-					$('#demo-form .success').hide();
-					$('#demo-form .error').hide();
+				$('#demo-form .success').hide();
+				$('#demo-form .error').hide();
 
 		    		(response && response.result === 'success') ? $('#demo-form .success').show() : $('#demo-form .error').show();
 			    }
