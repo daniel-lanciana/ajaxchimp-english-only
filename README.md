@@ -20,7 +20,7 @@ Fork of dead project https://github.com/scdoshi/jquery-ajaxchimp (no commits sin
 Just add the script to your webpage (along with jQuery ofcourse). Get it here:
 
 ```
-curl -O https://raw.githubusercontent.com/daniel-lanciana/jquery-ajaxchimp/master/jquery.ajaxchimp-english-only.js
+curl -O https://raw.githubusercontent.com/daniel-lanciana/ajaxchimp-english-only/master/jquery.ajaxchimp-english-only.js
 ```
 
 #### bower
