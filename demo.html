@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="jquery.ajaxchimp-english-only.js"></script>
+	</head>	
+
+	<body>
+		<form id="demo-form">
+			<!-- First and last name are optional, or could be hidden -->
+		    <input name="firstname" type="text" placeholder="First name">
+		    <input name="lastname" type="text" placeholder="Last name">
+		    
+		    <input id="form--email" type="email" placeholder="Email">
+		    
+		    <!-- Display set submit/success/error messages -->
+		    <label for="form--email"></label>
+
+			<!-- Display custom success/error messages -->
+		    <div class="success" style="display: none;">Custom success!</div>
+		    <div class="error" style="display: none;">Custom error!</div>
+
+		    <button type="submit">Submit</button>
+		</form>
+
+		<script>
+			$('#demo-form').ajaxChimp({
+			    url: '//blahblah.us1.list-manage.com/subscribe/post?u=5afsdhfuhdsiufdba6f8802&id=4djhfdsh99f',
+			    callback: function(response) {
+			    	console.log('MailChimp response received', response);
+
+		    		// Hide both messages in case we resubmit..
+					$('#demo-form .success').hide();
+					$('#demo-form .error').hide();
+
+		    		(response && response.result === 'success') ? $('#demo-form .success').show() : $('#demo-form .error').show();
+			    }
+			});
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+

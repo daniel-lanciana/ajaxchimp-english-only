@@ -1,0 +1,33 @@
+{
+    "name": "ajaxchimp-english-only",
+    "title": "jQuery ajaxChimp for MailChimp",
+    "description": "Ajaxify your mailchimp form. Based on the project by Siddharth Doshi.",
+    "version": "1.0.0",
+    "main": "./jquery.ajaxchimp-english-only.js",
+    "author": {
+        "name": "Daniel Lanciana",
+        "url": "https://daniel-lanciana.github.io"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/daniel-lanciana/jquery-ajaxchimp.git"
+    },
+    "bugs": "https://github.com/daniel-lanciana/jquery-ajaxchimp/issues",
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://raw.github.com/daniel-lanciana/jquery-ajaxchimp/master/LICENSE"
+        }
+    ],
+    "dependencies": {
+        "jquery": ">= 1.9.0"
+    },
+    "keywords": [
+        "mailchimp",
+        "ajax",
+        "email",
+        "form",
+        "jsonp"
+    ],
+    "ignore": []
+}

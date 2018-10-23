@@ -1,7 +1,7 @@
 /*!
-Mailchimp Ajax Submit
+Mailchimp Ajax Submit (English Only)
 jQuery Plugin
-Author: Siddharth Doshi
+Author: Daniel Lanciana (based on the work by Siddharth Doshi)
 
 Use:
 ===
@@ -14,15 +14,14 @@ $('#form_id').ajaxchimp(options);
 Options:
 =======
 options = {
-    language: 'en',
-    callback: callbackFunction,
-    url: 'http://blahblah.us1.list-manage.com/subscribe/post?u=5afsdhfuhdsiufdba6f8802&id=4djhfdsh99f'
+    url: '//blahblah.us1.list-manage.com/subscribe/post?u=5afsdhfuhdsiufdba6f8802&id=4djhfdsh99f',
+    callback: callbackFunction
 }
 
 Notes:
 =====
 To get the mailchimp JSONP url (undocumented), change 'post?' to 'post-json?' and add '&c=?' to the end.
-For e.g. 'http://blahblah.us1.list-manage.com/subscribe/post-json?u=5afsdhfuhdsiufdba6f8802&id=4djhfdsh99f&c=?',
+For e.g. '//blahblah.us1.list-manage.com/subscribe/post-json?u=5afsdhfuhdsiufdba6f8802&id=4djhfdsh99f&c=?',
 */
 
 (function ($) {
@@ -37,9 +36,6 @@ For e.g. 'http://blahblah.us1.list-manage.com/subscribe/post-json?u=5afsdhfuhdsi
             'The username portion of the email address is invalid (the portion before the @: )' : 4,
             'This email address looks fake or invalid. Please enter a real email address'       : 5
         },
-        translations: {
-            'en': null
-        },
         init: function (selector, options) {
             $(selector).ajaxChimp(options);
         }
@@ -49,17 +45,22 @@ For e.g. 'http://blahblah.us1.list-manage.com/subscribe/post-json?u=5afsdhfuhdsi
         $(this).each(function(i, elem) {
             var form = $(elem);
             var email = form.find('input[type=email]');
+            var firstname = form.find('input[name=firstname]');
+            var lastname = form.find('input[name=lastname]');
             var label = form.find('label[for=' + email.attr('id') + ']');
 
             var settings = $.extend({
-                'url': form.attr('action'),
-                'language': 'en'
+                'url': form.attr('action')
             }, options);
 
             var url = settings.url.replace('/post?', '/post-json?').concat('&c=?');
 
             form.attr('novalidate', 'true');
+
+            // Convert name attributes to those expected by MailChimp
             email.attr('name', 'EMAIL');
+            if (firstname) firstname.attr('name', 'FNAME');
+            if (lastname) lastname.attr('name', 'LNAME');
 
             form.submit(function () {
                 var msg;
@@ -93,19 +94,9 @@ For e.g. 'http://blahblah.us1.list-manage.com/subscribe/post-json?u=5afsdhfuhdsi
                         }
                     }
 
-                    // Translate and display message
-                    if (
-                        settings.language !== 'en'
-                        && $.ajaxChimp.responses[msg] !== undefined
-                        && $.ajaxChimp.translations
-                        && $.ajaxChimp.translations[settings.language]
-                        && $.ajaxChimp.translations[settings.language][$.ajaxChimp.responses[msg]]
-                    ) {
-                        msg = $.ajaxChimp.translations[settings.language][$.ajaxChimp.responses[msg]];
-                    }
                     label.html(msg);
-
                     label.show(2000);
+
                     if (settings.callback) {
                         settings.callback(resp);
                     }
@@ -127,16 +118,7 @@ For e.g. 'http://blahblah.us1.list-manage.com/subscribe/post-json?u=5afsdhfuhdsi
                     }
                 });
 
-                // Translate and display submit message
                 var submitMsg = 'Submitting...';
-                if(
-                    settings.language !== 'en'
-                    && $.ajaxChimp.translations
-                    && $.ajaxChimp.translations[settings.language]
-                    && $.ajaxChimp.translations[settings.language]['submit']
-                ) {
-                    submitMsg = $.ajaxChimp.translations[settings.language]['submit'];
-                }
                 label.html(submitMsg).show(2000);
 
                 return false;
