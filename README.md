@@ -149,11 +149,11 @@ Code from `demo.html`:
 			$('#demo-form').ajaxChimp({
 			    url: '//blahblah.us1.list-manage.com/subscribe/post?u=5afsdhfuhdsiufdba6f8802&id=4djhfdsh99f',
 			    callback: function(response) {
-			    	console.log('MailChimp response received', response);
+					console.log('MailChimp response received', response);
 
-		    		// Hide both messages in case we resubmit..
-				$('#demo-form .success').hide();
-				$('#demo-form .error').hide();
+					// Hide both messages in case we resubmit..
+					$('#demo-form .success').hide();
+					$('#demo-form .error').hide();
 
 		    		(response && response.result === 'success') ? $('#demo-form .success').show() : $('#demo-form .error').show();
 			    }
